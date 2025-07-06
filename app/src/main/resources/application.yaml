@@ -1,0 +1,27 @@
+quarkus:
+
+  datasource:
+    db-kind: postgresql
+    username: postgres
+    password: postgres
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/forumnation?currentSchema=public
+
+  hibernate-orm:
+    log:
+      sql: true
+      format-sql: false
+
+  liquibase:
+    migrate-at-start: true
+    change-log: db/changelog/db.changelog-master.yaml
+
+  devservices:
+    enabled: false
+
+  log:
+    console:
+      format: "%d{yyyy-MM-dd HH:mm:ss:SSS} %-5p [%c{3.}] (%t) %s%e%n"
+    category:
+      "org.hibernate":
+        level: INFO

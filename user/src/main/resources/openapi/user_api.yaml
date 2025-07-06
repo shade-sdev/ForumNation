@@ -1,0 +1,51 @@
+openapi: 3.1.0
+info:
+  title: User API
+  description: User API
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:8080/v1/users'
+tags:
+  - name: users
+    description: User api
+paths:
+  /users:
+    post:
+      operationId: createUser
+      summary: Creates a user
+      tags:
+        - users
+      requestBody:
+        $ref: '#/components/requestBodies/CreateUserRequestBody'
+      responses:
+        201:
+          description: User Created Successfully
+          headers:
+            Location:
+              description: URL of the created user
+              schema:
+                type: string
+
+components:
+
+  schemas:
+    UserCreation:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        enableTwoFactor:
+          type: boolean
+
+  requestBodies:
+    CreateUserRequestBody:
+      required: true
+      description: Create user request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserCreation'
