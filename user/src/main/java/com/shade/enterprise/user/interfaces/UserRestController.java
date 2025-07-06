@@ -6,13 +6,14 @@ import com.shade.enterprise.user.interfaces.api.UsersApi;
 import com.shade.enterprise.user.interfaces.model.UserCreationApiBean;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.extern.jbosslog.JBossLog;
 
 import java.net.URI;
-import java.util.UUID;
 
 @Path("/api/v1/users")
 @Produces(MediaType.APPLICATION_JSON)

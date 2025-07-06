@@ -1,10 +1,12 @@
 package com.shade.enterprise.shared.infrastructure.repository;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 
 import java.time.LocalDateTime;
 
+@ApplicationScoped
 public class ForumNationEntityListener {
 
     @PrePersist
