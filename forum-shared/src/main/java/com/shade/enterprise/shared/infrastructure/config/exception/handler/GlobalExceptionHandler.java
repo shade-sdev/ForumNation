@@ -3,7 +3,6 @@ package com.shade.enterprise.shared.infrastructure.config.exception.handler;
 import com.arjuna.ats.jta.exceptions.RollbackException;
 import com.shade.enterprise.shared.infrastructure.config.exception.model.ProblemDetail;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
@@ -22,7 +21,7 @@ public class GlobalExceptionHandler {
     @Context
     private UriInfo uriInfo;
 
-    @ServerExceptionMapper(priority = Priorities.AUTHENTICATION)
+    @ServerExceptionMapper
     public RestResponse<ProblemDetail> handleConstraintViolationException(ConstraintViolationException ex) {
         return RestResponse.status(BAD_REQUEST, ProblemDetail.builder()
                                                              .code("DB_DATA_VIOLATION")
@@ -33,7 +32,7 @@ public class GlobalExceptionHandler {
                                                              .build());
     }
 
-    @ServerExceptionMapper(priority = Priorities.AUTHENTICATION)
+    @ServerExceptionMapper
     public RestResponse<ProblemDetail> handleConstraintViolationException(jakarta.validation.ConstraintViolationException ex) {
         return RestResponse.status(BAD_REQUEST, ProblemDetail.builder()
                                                              .code("REQUEST_PARAM_VIOLATION")
@@ -44,7 +43,7 @@ public class GlobalExceptionHandler {
                                                              .build());
     }
 
-    @ServerExceptionMapper(priority = Priorities.AUTHENTICATION)
+    @ServerExceptionMapper
     public RestResponse<ProblemDetail> handleRollbackException(RollbackException ex) {
         return RestResponse.status(INTERNAL_SERVER_ERROR, ProblemDetail.builder()
                                                                        .code("ROLLBACK")
