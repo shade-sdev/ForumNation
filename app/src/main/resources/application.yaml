@@ -1,11 +1,17 @@
 quarkus:
 
+  pooled-jms:
+    transaction: xa
+
   datasource:
     db-kind: postgresql
     username: postgres
     password: postgres
     jdbc:
       url: jdbc:postgresql://localhost:5432/forumnation?currentSchema=public
+
+  transaction-manager:
+    enable-recovery: true
 
   hibernate-orm:
     log:
@@ -25,3 +31,11 @@ quarkus:
     category:
       "org.hibernate":
         level: INFO
+      "com.arjuna.ats":
+        level: DEBUG
+      "io.quarkiverse.messaginghub.pooled.jms":
+        level: TRACE
+      "io.smallrye.reactive.messaging":
+        level: TRACE
+
+
